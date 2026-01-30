@@ -1,0 +1,20 @@
+{
+  "campaigns": [
+    {
+      "slug": "promo1",
+      "title": "Special Funding Offer",
+      "images": [
+        "/campaigns/promo1-img1.png",
+        "/campaigns/promo1-img2.png"
+      ]
+    },
+    {
+      "slug": "summer2025",
+      "title": "Summer 2025 Campaign",
+      "images": [
+        "/campaigns/summer-img1.png",
+        "/campaigns/summer-img2.png"
+      ]
+    }
+  ]
+}
