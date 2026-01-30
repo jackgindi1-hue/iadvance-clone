@@ -17,7 +17,6 @@ function isPDF(filename: string): boolean {
 // Add watermark to an image using sharp
 async function addWatermarkToImage(buffer: Buffer, filename: string): Promise<{ buffer: Buffer; success: boolean }> {
   console.log(`🖼️ [IMG-WM-v3] Starting image watermark for: ${filename}`);
-  
   try {
     // Dynamic import of sharp
     const sharpModule = await import('sharp');
@@ -73,7 +72,6 @@ async function addWatermarkToImage(buffer: Buffer, filename: string): Promise<{ 
 async function addWatermarkToPDF(buffer: Buffer, filename: string): Promise<{ buffer: Buffer; success: boolean }> {
   console.log(`📄 [PDF-WM-v3] Starting PDF watermark for: ${filename}`);
   console.log(`📄 [PDF-WM-v3] PDF size: ${buffer.length} bytes`);
-  
   try {
     // Dynamic import of pdf-lib
     const { PDFDocument, rgb, degrees, StandardFonts } = await import('pdf-lib');
@@ -102,15 +100,14 @@ async function addWatermarkToPDF(buffer: Buffer, filename: string): Promise<{ bu
 
     const pages = pdfDoc.getPages();
     console.log(`📄 [PDF-WM-v3] PDF has ${pages.length} pages`);
-
     const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
     const watermarkText = 'HIGHLINE FUNDING';
 
     for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
       const page = pages[pageIndex];
       const { width, height } = page.getSize();
       const fontSize = Math.max(Math.min(width, height) / 18, 24);
-
       console.log(`📄 [PDF-WM-v3] Processing page ${pageIndex + 1}: ${width}x${height}, fontSize: ${fontSize}`);
 
       // Draw multiple watermarks diagonally across the page
@@ -143,12 +140,12 @@ async function addWatermarkToPDF(buffer: Buffer, filename: string): Promise<{ bu
     console.error(`❌ [PDF-WM-v3] FAILED to watermark PDF ${filename}`);
     console.error(`❌ [PDF-WM-v3] Error type: ${error?.constructor?.name}`);
     console.error(`❌ [PDF-WM-v3] Error message: ${error?.message}`);
-    
+
     // Check if it's an encryption error
     if (error?.message?.includes('encrypt')) {
       console.log(`🔒 [PDF-WM-v3] PDF is encrypted - banks often protect statements`);
     }
-    
+
     // Return original buffer - can't watermark this PDF
     console.log(`📄 [PDF-WM-v3] Returning original PDF without watermark`);
     return { buffer, success: false };
