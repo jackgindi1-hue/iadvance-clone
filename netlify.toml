@@ -1,0 +1,15 @@
+[build]
+command = "bun install && bun run build"
+publish = ".next"
+
+[build.environment]
+NODE_VERSION = "18"
+BUN_VERSION = "1.2.17"
+DOCUSIGN_INTEGRATION_KEY = "b33d0d33-e4d8-4c3b-98cf-95126859d249"
+DOCUSIGN_ACCOUNT_ID = "c238cbb6-3f73-4721-9f47-2f0536de2c7a"
+DOCUSIGN_USER_ID = "c5217d1d-c907-41c1-b9af-c7754ed85cba"
+DOCUSIGN_BASE_URL = "https://na4.docusign.net"
+DOCUSIGN_OAUTH_BASE_URL = "https://account.docusign.com"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
