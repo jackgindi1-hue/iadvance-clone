@@ -40,17 +40,14 @@ export async function POST(request: NextRequest) {
     switch (emailType) {
       case 'confirmation':
         html = generateConfirmationEmail(data);
-        // Match actual subject from submit-application/route.ts
         subject = `[TEST] Application Received - Next Steps for ${data.firstName}`;
         break;
       case 'upload':
         html = generateUploadConfirmationEmail(data);
-        // Match actual subject from submit-with-files/route.ts
         subject = `[TEST] One More Step - Complete Your Application for ${data.firstName}`;
         break;
       case 'dlvc':
         html = generateDLVCConfirmationEmail(data);
-        // Match actual subject from submit-dlvc/route.ts
         subject = `[TEST] Documents Received - ${data.firstName}, Your Funding is in Progress!`;
         break;
       default:
