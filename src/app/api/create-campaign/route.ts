@@ -48,7 +48,6 @@ export async function POST(request: NextRequest) {
       const errorText = await getFileResponse.text();
       console.error('GitHub API error:', getFileResponse.status, errorText);
 
-      // Provide more specific error messages
       if (getFileResponse.status === 401) {
         return NextResponse.json(
           { error: 'GitHub token is invalid or expired. Please check your GITHUB_TOKEN in Netlify.' },
