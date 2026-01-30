@@ -16,17 +16,14 @@ interface SMSResult {
 function formatPhoneNumber(phone: string): string {
   // Remove all non-digits
   const digits = phone.replace(/\D/g, '');
-  
   // If it's 10 digits, assume US and add +1
   if (digits.length === 10) {
     return `+1${digits}`;
   }
-  
   // If it's 11 digits and starts with 1, add +
   if (digits.length === 11 && digits.startsWith('1')) {
     return `+${digits}`;
   }
-  
   // Otherwise, assume it already has country code
   return `+${digits}`;
 }
@@ -91,13 +88,9 @@ Review and follow up ASAP!`,
   // To Applicant: Thank them, explain next steps, then link
   newApplicationToApplicant: (firstName: string, businessName: string) =>
     `Hi ${firstName}! Thank you for applying with Highline Funding.
-
 We've received your application for ${businessName} and a funding specialist will review it shortly.
-
 NEXT STEP: Please upload your last 3 months of business bank statements to complete your application.
-
 Upload here: https://highlinefunding.com/upload
-
 Questions? Call us: (305) 515-7319`,
 
   // === BANK STATEMENTS UPLOADED ===
@@ -110,11 +103,8 @@ Documents ready for review!`,
   // To Applicant: Confirm receipt, explain final step, then link
   bankStatementsToApplicant: (firstName: string) =>
     `Hi ${firstName}! We've received your bank statements - thank you!
-
 FINAL STEP: Please complete identity verification to finalize your application. This quick and secure process only takes a few minutes.
-
 Complete verification here: https://highlinefunding.com/dlvc
-
 Questions? Call us: (305) 515-7319`,
 
   // === DLVC COMPLETED ===
@@ -130,15 +120,11 @@ Ready for final review and funding decision!`,
   // To Applicant: Confirm everything received, explain what happens next
   dlvcToApplicant: (firstName: string) =>
     `Hi ${firstName}! Congratulations - your application is complete!
-
 We've received all your documents:
 - Application
 - Bank statements
 - Identity verification
-
 A funding specialist will contact you shortly to discuss your personalized funding options.
-
 Thank you for choosing Highline Funding!
-
 Questions? Call us: (305) 515-7319`,
 };
