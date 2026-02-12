@@ -1,17 +1,16 @@
 [build]
-  command = "bun install && bun run build"
+  command = "npm install && npm run build"
   publish = ".next"
 [build.environment]
   NODE_VERSION = "18"
-  BUN_VERSION = "1.2.17"
-  # Force fresh build - 2026-01-30-v15-iframe-with-error
+  # Force fresh build - 2026-02-12-v22-npm-fix
   NETLIFY_NEXT_PLUGIN_SKIP = "false"
   # Disable all Netlify caches
   NETLIFY_BUILD_CACHE_RESTORE = "false"
   NETLIFY_SKIP_BUILD_CACHE = "true"
   # Unique build ID to force new build
-  BUILD_TIMESTAMP = "2026-02-12T20:00:00Z-v21-fix-images"
-  BUILD_VERSION = "v21-restore-svgs-deploy-all"
+  BUILD_TIMESTAMP = "2026-02-12T22:45:00Z-v22-npm-fix"
+  BUILD_VERSION = "v22-npm-install-fix"
   # DocuSign API Credentials
   DOCUSIGN_INTEGRATION_KEY = "b33d0d33-e4d8-4c3b-98cf-95126859d249"
   DOCUSIGN_SECRET_KEY = "eba41c74-70ff-4e27-ada5-a3c261a6a6a2"
