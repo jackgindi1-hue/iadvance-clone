@@ -1,0 +1,42 @@
+[build]
+  command = "bun install && bun run build"
+  publish = ".next"
+[build.environment]
+  NODE_VERSION = "18"
+  BUN_VERSION = "1.2.17"
+  # Force fresh build - 2026-01-30-v15-iframe-with-error
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
+  # Disable all Netlify caches
+  NETLIFY_BUILD_CACHE_RESTORE = "false"
+  NETLIFY_SKIP_BUILD_CACHE = "true"
+  # Unique build ID to force new build
+  BUILD_TIMESTAMP = "2026-02-12T20:00:00Z-v21-fix-images"
+  BUILD_VERSION = "v21-restore-svgs-deploy-all"
+  # DocuSign API Credentials
+  DOCUSIGN_INTEGRATION_KEY = "b33d0d33-e4d8-4c3b-98cf-95126859d249"
+  DOCUSIGN_SECRET_KEY = "eba41c74-70ff-4e27-ada5-a3c261a6a6a2"
+  DOCUSIGN_ACCOUNT_ID = "c238cbb6-3f73-4721-9f47-2f0536de2c7a"
+  DOCUSIGN_USER_ID = "c5217d1d-c907-41c1-b9af-c7754ed85cba"
+  DOCUSIGN_BASE_URL = "https://na4.docusign.net"
+  DOCUSIGN_OAUTH_BASE_URL = "https://account.docusign.com"
+  # RSA key must be set in Netlify UI due to multiline format
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+# Disable caching for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+# Specifically disable caching for upload pages
+[[headers]]
+  for = "/upload*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+[[headers]]
+  for = "/docusign*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
